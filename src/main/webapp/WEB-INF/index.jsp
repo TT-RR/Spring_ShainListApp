@@ -33,8 +33,8 @@ th, td {
 		</tr>
 
 		<%
-			//社員リストを作る
-			ArrayList<Shain> shainList = (ArrayList<Shain>)request.getAttribute("shainList");
+		//社員リストを作る
+		ArrayList<Shain> shainList = (ArrayList<Shain>) request.getAttribute("shainList");
 		%>
 
 		<%
@@ -46,8 +46,8 @@ th, td {
 			<td><%=shain.getSei()%></td>
 			<td><%=shain.getNen()%></td>
 			<td><%=shain.getAddress()%></td>
-			<td>変更</td>
-			<td>削除</td>
+			<td><a href="update?id=<%=shain.getId()%>">変更</a></td>
+			<td><a href="delete?id=<%=shain.getId()%>">削除</a></td>
 		</tr>
 		<%
 }
