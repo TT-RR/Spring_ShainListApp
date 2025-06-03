@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import searchman.entity.Shain;
 import searchman.service.ShainService;
@@ -43,6 +44,31 @@ public class ShainController {
 
 		//DBに挿入
 		shainService.insertShain(shain);
+
+		// リダイレクト
+		return "redirect:/index";
+	}
+
+	@GetMapping("/update")
+	public String update(@RequestParam("id") int id, Model model) {
+		//対象データを取得
+		Shain shain = shainService.findByShainId(id);
+
+		// JSPに渡す
+		model.addAttribute("shain", shain);
+
+		// JSPに転送
+		return "update";
+	}
+
+	@PostMapping("/update")
+	public String update(@ModelAttribute Shain request) {
+
+		//パラメータ値から社員作成
+		Shain shain = shainService.makeShain(request);
+
+		//DB更新
+		shainService.updateShain(shain);
 
 		// リダイレクト
 		return "redirect:/index";

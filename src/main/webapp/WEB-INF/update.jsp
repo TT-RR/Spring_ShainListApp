@@ -50,10 +50,15 @@
 			</tr>
 			<tr>
 				<td><label for="address">住所:</label></td>
-				<td><%=shain.getAddress()%></td>
+				<td><input type="text" id="address" name="address"
+					value="<%=shain.getAddress()%>" class="form-input" required></td>
 			</tr>
 		</table>
 		<button type="submit" class="form-button">更新</button>
+		<input type="hidden" name="id" value="<%=shain.getId()%>"> <input
+			type="hidden" name="name" value="<%=shain.getName()%>"> <input
+			type="hidden" name="sei" value="<%=shain.getSei()%>"> <input
+			type="hidden" name="nen" value="<%=shain.getNen()%>">
 	</form>
 </body>
 </html>

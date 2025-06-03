@@ -29,8 +29,18 @@ public class ShainRepositoryImpl implements ShainRepository {
 
 	@Override
 	public Shain findByShainId(int shainId) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		//SQL文の作成
+		final String sql = "select id, name, sei, nen, address from shain where id = :id";
+
+		// パラメータの作成
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("id", shainId);
+
+		// SQLの実行
+		List<Shain> shainList = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Shain>(Shain.class));
+		
+		// 判定して戻す
+		return shainList.isEmpty() ? null : shainList.get(0);
 	}
 
 	@Override
@@ -54,7 +64,20 @@ public class ShainRepositoryImpl implements ShainRepository {
 
 	@Override
 	public void updateShain(Shain shain) {
-		// TODO 自動生成されたメソッド・スタブ
+		//SQL文の作成
+		final String sql = "update shain set name=:name, sei=:sei, nen=:nen, address=:address "
+				+ "where id=:id";
+
+		// パラメータの作成
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("id", shain.getId());
+		param.addValue("name", shain.getName());
+		param.addValue("sei", shain.getSei());
+		param.addValue("nen", shain.getNen());
+		param.addValue("address", shain.getAddress());
+
+		// SQLの実行
+		jdbcTemplate.update(sql, param);
 
 	}
 
