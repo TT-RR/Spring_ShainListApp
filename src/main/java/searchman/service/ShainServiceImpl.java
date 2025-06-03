@@ -21,14 +21,21 @@ public class ShainServiceImpl implements ShainService {
 
 	@Override
 	public Shain makeShain(Shain request) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		//社員オブジェクトの作成
+		Shain shain = new Shain();
+		//社員オブジェクトに値を代入
+		shain.setId(request.getId());
+		shain.setName(request.getName());
+		shain.setSei(request.getSei());
+		shain.setNen(request.getNen());
+		shain.setAddress(request.getAddress());
+		//社員オブジェクトを戻す
+		return shain;
 	}
 
 	@Override
 	public void insertShain(Shain shain) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		shainRepository.insertShain(shain);
 	}
 
 	@Override
